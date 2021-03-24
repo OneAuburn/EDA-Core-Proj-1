@@ -1,0 +1,27 @@
+minimum_cumulusci_version: '3.27.0'
+project:
+    name: EDA-Core-Proj-1
+    package:
+        name: EDA-Core-Proj-1
+        api_version: '50.0'
+    dependencies:
+        - github: 'https://github.com/SalesforceFoundation/EDA'
+    git:
+        default_branch: 'main'
+    source_format: sfdx
+
+tasks:
+    robot:
+        options:
+            suites: robot/EDA-Core-Proj-1/tests
+            options:
+                outputdir: robot/EDA-Core-Proj-1/results
+
+    robot_testdoc:
+        options:
+            path: robot/EDA-Core-Proj-1/tests
+            output: robot/EDA-Core-Proj-1/doc/EDA-Core-Proj-1_tests.html
+
+    run_tests:
+        options:
+            required_org_code_coverage_percent: 75
