@@ -1,0 +1,16 @@
+*** New Case Alert ***
+
+The following case has been created:
+Case: {!Case.CaseNumber}
+Contact to be Reviewed: {!Case.Contact_to_be_Reviewed__c}
+Object to be Reviewed: {!Case.Object_to_be_Reviewed__c}
+Field(s) to be Reviewed: {!Case.Field_s_to_be_Reviewed__c}
+Description provided:  {!Case.Description}
+Date Requested: {!Case.CreatedDate}
+
+Click on the link to access the case: {!Case.Link}
+
+You will be updated when this case has been updated.
+
+Sincerely,
+OneAuburn Team

@@ -1,0 +1,12 @@
+*** Case Completion ***
+
+The following case has been completed:
+Case: {!Case.CaseNumber}
+
+
+Click on the link to access the case: {!Case.Link}
+
+This case has been closed.
+
+Sincerely,
+OneAuburn Team

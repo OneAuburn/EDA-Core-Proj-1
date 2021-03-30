@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <apiVersion>51.0</apiVersion>
+    <assignments>
+        <description>This step assigns the individual data points for Case creation</description>
+        <name>Set_up_New_Business_Account_Case</name>
+        <label>Set up New Business Account Case</label>
+        <locationX>136</locationX>
+        <locationY>698</locationY>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Priority</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Medium</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Origin</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>New Account Requested</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.ContactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lkp_Contact.recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Requested_New_Account_Name__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>inp_Requested_New_Account_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Requested_New_Account_City__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>inp_Requested_New_Account_City</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Requested_New_Account_State_Country__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>inp_Requested_New_Account_State_Country</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_new_Case</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>This step assigns the individual data points for Case creation</description>
+        <name>Set_up_New_Data_Integrity_Case</name>
+        <label>Set up New Data Integrity Case</label>
+        <locationX>311</locationX>
+        <locationY>700</locationY>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Priority</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Medium</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Origin</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Incorrect Record Data</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.ContactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lkp_Contact_0.recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Contact_to_be_Reviewed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lkp_ContactToReview.recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Field_s_to_be_Reviewed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>inp_Fields_to_be_Reviewed</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rec_Case_toCreate.Object_to_be_Reviewed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>inp_Object_to_Review</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_new_Case</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <description>This type is used to indicate a request for a Data Integrity case</description>
+        <name>choice_DataIntegrityCase</name>
+        <choiceText>Data Integrity Case</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>DataIntegrityCase</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <description>This type is used to indicate a request for a New Account Request case</description>
+        <name>choice_NewAccountRequest</name>
+        <choiceText>New Account Request</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>NewAccountRequest</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <description>Used to drive to the right record type creation screen</description>
+        <name>Which_Type</name>
+        <label>Which Type</label>
+        <locationX>217</locationX>
+        <locationY>266</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>outc_NewAccountRequest</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>radio_WhatTypeOfRecord</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>choice_NewAccountRequest</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>scn_New_Business_Account</targetReference>
+            </connector>
+            <label>New Account Request</label>
+        </rules>
+        <rules>
+            <name>Data_Integrity_Case</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>radio_WhatTypeOfRecord</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>choice_DataIntegrityCase</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>scn_New_Data_Integrity</targetReference>
+            </connector>
+            <label>Data Integrity Case</label>
+        </rules>
+    </decisions>
+    <description>This flow is used as a quick action to the type of Case to create while hiding unnecessary fields</description>
+    <dynamicChoiceSets>
+        <description>This is used to store the picklist values of case status</description>
+        <name>pklSet_CaseStatus</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Status</picklistField>
+        <picklistObject>Case</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <description>This generates the list of picklist values for Objects to be reviewed</description>
+        <name>pklSet_ObjectsToReview</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Object_to_be_Reviewed__c</picklistField>
+        <picklistObject>Case</picklistObject>
+    </dynamicChoiceSets>
+    <interviewLabel>CaseCreation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CaseCreation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <description>This step creates a new case based on the data provided</description>
+        <name>Create_new_Case</name>
+        <label>Create new Case</label>
+        <locationX>219</locationX>
+        <locationY>877</locationY>
+        <inputReference>rec_Case_toCreate</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <description>This get generates the Data Integrity case Record Type ID for record creation</description>
+        <name>Get_Data_Integrity_RT</name>
+        <label>Get Data Integrity RT</label>
+        <locationX>311</locationX>
+        <locationY>582</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_up_New_Data_Integrity_Case</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Case</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Data Integrity Case</stringValue>
+            </value>
+        </filters>
+        <object>RecordType</object>
+        <outputAssignments>
+            <assignToReference>var_case_DataIntegrityRecordTypeID</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <description>This get generates the New Account case Record Type ID for record creation</description>
+        <name>Get_New_Account_Case_RT</name>
+        <label>Get New Account Case RT</label>
+        <locationX>136</locationX>
+        <locationY>582</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_up_New_Business_Account_Case</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Case</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>New Account Request</stringValue>
+            </value>
+        </filters>
+        <object>RecordType</object>
+        <outputAssignments>
+            <assignToReference>var_case_NewAccountRecordTypeID</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <screens>
+        <description>This screen de</description>
+        <name>Initial_Screen</name>
+        <label>Initial Screen</label>
+        <locationX>226</locationX>
+        <locationY>156</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Which_Type</targetReference>
+        </connector>
+        <fields>
+            <name>radio_WhatTypeOfRecord</name>
+            <choiceReferences>choice_NewAccountRequest</choiceReferences>
+            <choiceReferences>choice_DataIntegrityCase</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>What type of record are you looking to create?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>This screen is used to request a new business account case</description>
+        <name>scn_New_Business_Account</name>
+        <label>New Business Account Screen</label>
+        <locationX>136</locationX>
+        <locationY>446</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Get_New_Account_Case_RT</targetReference>
+        </connector>
+        <fields>
+            <name>inp_Requested_New_Account_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Requested New Account Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>inp_Requested_New_Account_City</name>
+            <dataType>String</dataType>
+            <fieldText>Requested New Account City</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>inp_Requested_New_Account_State_Country</name>
+            <dataType>String</dataType>
+            <fieldText>Requested New Account State / Country</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>lkp_Contact</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Case</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>ContactId</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Contact</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>This screen is used to request a new data integrtiy case</description>
+        <name>scn_New_Data_Integrity</name>
+        <label>New Data Integrity Screen</label>
+        <locationX>311</locationX>
+        <locationY>450</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Get_Data_Integrity_RT</targetReference>
+        </connector>
+        <fields>
+            <name>lkp_Contact_0</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Case</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>ContactId</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Contact</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>lkp_ContactToReview</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Contact_to_be_Reviewed__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Contact To Review</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Case</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>inp_Fields_to_be_Reviewed</name>
+            <dataType>String</dataType>
+            <fieldText>Field(s) to be Reviewed</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>inp_Object_to_Review</name>
+            <choiceReferences>pklSet_ObjectsToReview</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Object to Review</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>95</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Initial_Screen</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>This record stores the information to be created</description>
+        <name>rec_Case_toCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <description>This returns the ID of the Data Integrity record type</description>
+        <name>var_case_DataIntegrityRecordTypeID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>This returns the ID of the New Account Request record type</description>
+        <name>var_case_NewAccountRecordTypeID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

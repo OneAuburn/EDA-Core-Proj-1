@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Object_to_be_Reviewed__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Select object that pertains to the data integrity issue.</inlineHelpText>
+    <label>Object to be Reviewed</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account</fullName>
+                <default>false</default>
+                <label>Account</label>
+            </value>
+            <value>
+                <fullName>Contact</fullName>
+                <default>false</default>
+                <label>Contact</label>
+            </value>
+            <value>
+                <fullName>Affiliation</fullName>
+                <default>false</default>
+                <label>Affiliation</label>
+            </value>
+            <value>
+                <fullName>Course</fullName>
+                <default>false</default>
+                <label>Course</label>
+            </value>
+            <value>
+                <fullName>Course Offering</fullName>
+                <default>false</default>
+                <label>Course Offering</label>
+            </value>
+            <value>
+                <fullName>Course Connection</fullName>
+                <default>false</default>
+                <label>Course Connection</label>
+            </value>
+            <value>
+                <fullName>Degree</fullName>
+                <default>false</default>
+                <label>Degree</label>
+            </value>
+            <value>
+                <fullName>Program Enrollment</fullName>
+                <default>false</default>
+                <label>Program Enrollment</label>
+            </value>
+            <value>
+                <fullName>Student Outcomes</fullName>
+                <default>false</default>
+                <label>Student Outcomes</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

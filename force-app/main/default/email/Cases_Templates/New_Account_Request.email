@@ -1,0 +1,13 @@
+*** New Case Alert ***
+
+The following case has been created:
+Case: {!Case.CaseNumber}
+New Account Request Name: {!Case.Requested_New_Account_Name__c}
+Date Requested: {!Case.CreatedDate}
+
+Click on the link to access the case:  {!Case.Link}
+
+You will be updated when this case has been updated. 
+
+Sincerely,
+OneAuburn Team

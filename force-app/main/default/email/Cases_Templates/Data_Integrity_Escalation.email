@@ -1,0 +1,12 @@
+*** Case Escalation Alert ***
+
+The following case has been escalated:
+Case: {!Case.CaseNumber}
+
+
+Click on the link to access the case: {!Case.Link}
+
+You have been notified because your case has been escalated to an external team for help.  You will be updated when this case has been closed. 
+
+Sincerely,
+OneAuburn Team

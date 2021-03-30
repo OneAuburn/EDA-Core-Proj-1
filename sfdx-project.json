@@ -6,11 +6,20 @@
             "package": "AUCore_PMOCases",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT"
+        },
+        {
+            "path": "force-app",
+            "package": "AUCore_PMOCases_org",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
         }
     ],
     "namespace": null,
     "sourceApiVersion": "50.0",
     "packageAliases": {
-        "AUCore_PMOCases": "0Ho4T000000KyrZSAS"
+        "AUCore_PMOCases": "0Ho4T000000KyrZSAS",
+        "AUCore_PMOCases_org": "0Ho4T000000KyreSAC",
+        "AUCore_PMOCases_org@0.1.0-1": "04t4T000001dQUaQAM"
     }
 }

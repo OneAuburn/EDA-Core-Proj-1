@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Account_Request</fullName>
+    <fields>ContactId</fields>
+    <fields>Status</fields>
+    <fields>Requested_New_Account_Name__c</fields>
+    <fields>Requested_New_Account_City__c</fields>
+    <fields>Requested_New_Account_State_Country__c</fields>
+    <label>New Account Request</label>
+</CompactLayout>
